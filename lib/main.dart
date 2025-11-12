@@ -27,6 +27,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Scrollbar(
+        controller: _scrollController,
         child: ListView.builder(
+          controller: _scrollController,
           itemCount: 100,
           itemBuilder: (context, index) {
             return ListTile(title: Text('Item $index'));
